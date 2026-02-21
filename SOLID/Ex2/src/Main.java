@@ -2,9 +2,9 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("=== Cafeteria Billing ===");
-
-        CafeteriaSystem sys = new CafeteriaSystem();
+        OutputPrinter op = new OutputPrinter();
+        op.printHeader();FileStore fs = new FileStore();
+        CafeteriaSystem sys = new CafeteriaSystem(fs,op);
         sys.addToMenu(new MenuItem("M1", "Veg Thali", 80.00));
         sys.addToMenu(new MenuItem("C1", "Coffee", 30.00));
         sys.addToMenu(new MenuItem("S1", "Sandwich", 60.00));
@@ -15,5 +15,6 @@ public class Main {
         );
 
         sys.checkout("student", order);
+        sys.checkout("staff", order);
     }
 }
