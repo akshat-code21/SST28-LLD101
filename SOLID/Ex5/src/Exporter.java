@@ -1,4 +1,16 @@
 public abstract class Exporter {
-    // implied "contract" but not enforced (smell)
-    public abstract ExportResult export(ExportRequest req);
+    protected final FormatStrategy formatStrategy;
+
+    protected Exporter(FormatStrategy strategy) {
+        this.formatStrategy = strategy;
+    }
+
+    public final ExportResult export(ExportRequest req) {
+        if (req == null) {
+            return new ExportResult("Request cannot be null");
+        }
+        return doExport(req);
+    }
+
+    protected abstract ExportResult doExport(ExportRequest req);
 }
