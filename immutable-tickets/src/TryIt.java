@@ -20,9 +20,12 @@ public class TryIt {
         System.out.println("Created: " + t);
 
         // Demonstrate post-creation mutation through service
-        service.assign(t, "agent@example.com");
-        service.escalateToCritical(t);
+        IncidentTicket assigned = service.assign(t, "agent@example.com");
+        IncidentTicket escalated  = service.escalateToCritical(assigned);
         System.out.println("\nAfter service mutations: " + t);
+
+        System.out.println("\nAssigned:   " + assigned);
+        System.out.println("\nEscalated:  " + escalated);
 
         // Demonstrate external mutation via leaked list reference
         List<String> tags = t.getTags();
